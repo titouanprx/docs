@@ -1,5 +1,25 @@
 {
+  "name": "LinkedIn API",
+  "favicon": "https://yourdomain.com/favicon.ico",
   "api": {
-    "specification": "api-reference/openapi.yaml"
-  }
+    "spec": "api-reference/openapi.yaml"
+  },
+  "colors": {
+    "primary": "#3b5998"
+  },
+  "navigation": [
+    {
+      "group": "API Reference",
+      "pages": [
+        {
+          "name": "Introduction",
+          "path": "/introduction"
+        },
+        {
+          "name": "Endpoints",
+          "path": "/api-reference"
+        }
+      ]
+    }
+  ]
 }
