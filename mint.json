@@ -5,9 +5,10 @@
   "colors": {
     "primary": "#0A66C2"
   },
-  "api": {
-    "file": "api-reference/openapi.yaml"
-  },
+  "files": [
+    "api-reference/openapi.yaml",
+    "introduction.mdx"
+  ],
   "navigation": [
     {
       "group": "Documentation",
