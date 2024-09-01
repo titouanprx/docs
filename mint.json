@@ -3,31 +3,17 @@
   "logo": "/static/images/logo.png",
   "favicon": "/static/images/favicon.png",
   "colors": {
-    "primary": "#0A66C2",
-    "secondary": "#004182"
+    "primary": "#0A66C2"
   },
   "api": {
-    "baseUrl": "https://api.yourdomain.com/v1",
-    "specFile": "api-reference/openapi.yaml"
+    "file": "api-reference/openapi.yaml"
   },
   "navigation": [
     {
-      "group": "Getting Started",
+      "group": "Documentation",
       "pages": [
         "introduction.mdx",
-        "authentication.mdx"
-      ]
-    },
-    {
-      "group": "API Reference",
-      "pages": [
         "api-reference/openapi.yaml"
-      ]
-    },
-    {
-      "group": "Examples",
-      "pages": [
-        "examples/usage-example.mdx"
       ]
     }
   ]
