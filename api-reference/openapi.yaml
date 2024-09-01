@@ -1,0 +1,228 @@
+openapi: 3.0.0
+info:
+  title: LinkedIn API
+  description: API Documentation for Startups, B2B Leads, and Recruiters
+  version: 1.0.0
+servers:
+  - url: https://api.yourdomain.com/v1
+    description: Main API Server
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []
+
+paths:
+  /search/opportunities:
+    get:
+      summary: Recherche d'opportunités (Stage, Alternance, Job)
+      description: Rechercher des offres d'emploi, de stage ou d'alternance sur LinkedIn.
+      parameters:
+        - name: keywords
+          in: query
+          required: true
+          description: Mots-clés pour la recherche
+          schema:
+            type: string
+        - name: location
+          in: query
+          description: Localisation souhaitée
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Type d'opportunité (stage, alternance, job)
+          schema:
+            type: string
+            enum: [stage, alternance, job]
+      responses:
+        '200':
+          description: Liste des opportunités trouvées
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+  /scrap/profiles/niche:
+    get:
+      summary: Scrap de profils dans une niche spécifique
+      description: Récupérer des profils LinkedIn correspondant à une niche spécifique.
+      parameters:
+        - name: niche
+          in: query
+          required: true
+          description: Secteur ou domaine ciblé
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Liste des profils trouvés
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+  /scrap/profiles:
+    post:
+      summary: Scrap de profils depuis des URL LinkedIn
+      description: Récupérer les informations détaillées des profils LinkedIn en utilisant des URLs spécifiques.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                urls:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Informations des profils scrappées
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+  /scrap/profiles/contacts:
+    get:
+      summary: Scrap des contacts des profils
+      description: Extraire les informations de contact des profils LinkedIn.
+      parameters:
+        - name: profile_id
+          in: query
+          required: true
+          description: Identifiant du profil LinkedIn
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Informations de contact du profil
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /scrap/companies:
+    get:
+      summary: Scrap des profils d'entreprises
+      description: Récupérer les informations détaillées des entreprises sur LinkedIn.
+      parameters:
+        - name: company_id
+          in: query
+          required: true
+          description: Identifiant de l'entreprise LinkedIn
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Informations de l'entreprise scrappée
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /scrap/companies/niche:
+    get:
+      summary: Scrap de toutes les entreprises dans une niche
+      description: Récupérer les entreprises dans une niche spécifique.
+      parameters:
+        - name: niche
+          in: query
+          required: true
+          description: Secteur ou domaine ciblé
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Liste des entreprises trouvées
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+  /login:
+    post:
+      summary: Login des comptes LinkedIn
+      description: Authentifier un compte LinkedIn pour accéder aux services.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Authentification réussie
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+
+  /connect:
+    post:
+      summary: Envoyer une demande de connexion
+      description: Envoyer une demande de connexion à un utilisateur LinkedIn.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                profile_id:
+                  type: string
+                message:
+                  type: string
+      responses:
+        '200':
+          description: Demande de connexion envoyée
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /message:
+    post:
+      summary: Envoyer un message
+      description: Envoyer un message direct à un utilisateur LinkedIn.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                profile_id:
+                  type: string
+                message:
+                  type: string
+      responses:
+        '200':
+          description: Message envoyé
+          content:
+            application/json:
+              schema:
+                type: object
