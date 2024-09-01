@@ -1,24 +1,33 @@
 {
-  "name": "LinkedIn API",
-  "favicon": "https://yourdomain.com/favicon.ico",
-  "api": {
-    "spec": "api-reference/openapi.yaml"
-  },
+  "name": "LinkedIn API Documentation",
+  "logo": "/static/images/logo.png",
+  "favicon": "/static/images/favicon.png",
   "colors": {
-    "primary": "#3b5998"
+    "primary": "#0A66C2",
+    "secondary": "#004182"
+  },
+  "api": {
+    "baseUrl": "https://api.yourdomain.com/v1",
+    "specFile": "api-reference/openapi.yaml"
   },
   "navigation": [
     {
+      "group": "Getting Started",
+      "pages": [
+        "introduction.mdx",
+        "authentication.mdx"
+      ]
+    },
+    {
       "group": "API Reference",
       "pages": [
-        {
-          "name": "Introduction",
-          "path": "/introduction"
-        },
-        {
-          "name": "Endpoints",
-          "path": "/api-reference"
-        }
+        "api-reference/openapi.yaml"
+      ]
+    },
+    {
+      "group": "Examples",
+      "pages": [
+        "examples/usage-example.mdx"
       ]
     }
   ]
